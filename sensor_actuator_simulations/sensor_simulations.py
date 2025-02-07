@@ -4,7 +4,7 @@ import random
 
 
 BROKER = "localhost"
-PORT = 5000
+PORT = 1883
 TOPIC_TEMPLATE = "sensors/temperature/{}"
 SENSORS = ["sensor1", "sensor2", "sensor3", "sensor4", "sensor5"]
 
@@ -13,7 +13,7 @@ client.connect(BROKER, PORT, 60)
 
 try:
     while True:
-        for sensors in sensors:
+        for sensors in SENSORS:
             temperature = round(random.uniform(15, 35), 2)
             topic = TOPIC_TEMPLATE.format(sensors)
             message = f"{temperature}\u00b0C"
@@ -26,3 +26,7 @@ try:
 except KeyboardInterrupt:
     print("Stopping sensor simulation")
     client.disconnect()
+
+    
+
+
